@@ -11,6 +11,23 @@ let charts = {};
 
 const $ = (id) => document.getElementById(id);
 
+function applyTheme(isDark) {
+
+  document.documentElement.dataset.theme =
+    isDark ? "dark" : "light";
+
+  const themeButton = $("themeBtn");
+  const label = isDark
+    ? "Switch to light theme"
+    : "Switch to dark theme";
+
+  themeButton.textContent = isDark ? "☀" : "☾";
+  themeButton.title = label;
+  themeButton.setAttribute("aria-label", label);
+  themeButton.setAttribute("aria-pressed", String(isDark));
+
+}
+
 
 /* =========================================
    FORMATTERS
@@ -346,6 +363,9 @@ function render() {
 
 function baseChartOptions() {
 
+  const isDark =
+    document.documentElement.dataset.theme === "dark";
+
   return {
 
     responsive: true,
@@ -360,7 +380,7 @@ function baseChartOptions() {
 
       tooltip: {
 
-        backgroundColor: "#182033",
+        backgroundColor: isDark ? "#10141d" : "#182033",
 
         padding: 10,
 
@@ -1022,6 +1042,22 @@ $("refreshBtn")
   );
 
 
+$("themeBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      const isDark =
+        document.documentElement.dataset.theme !== "dark";
+
+      localStorage.setItem("pulseboard-theme", isDark ? "dark" : "light");
+      applyTheme(isDark);
+      render();
+
+    }
+  );
+
+
 $("retryBtn")
   .addEventListener(
     "click",
@@ -1060,5 +1096,9 @@ $("todayLabel").textContent =
 /* =========================================
    INITIALIZE
 ========================================= */
+
+applyTheme(
+  localStorage.getItem("pulseboard-theme") === "dark"
+);
 
 loadData();
