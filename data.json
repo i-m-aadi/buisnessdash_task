@@ -1,0 +1,227 @@
+{
+  "records": [
+    {
+      "date": "2026-09-20",
+      "customer": "Northstar Labs",
+      "service": "SaaS",
+      "campaign": "Organic Search",
+      "amount": 42000,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-18",
+      "customer": "BluePeak Retail",
+      "service": "Consulting",
+      "campaign": "LinkedIn",
+      "amount": 28500,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-16",
+      "customer": "Vertex Health",
+      "service": "Support",
+      "campaign": "Referral",
+      "amount": 12400,
+      "status": "Pending"
+    },
+    {
+      "date": "2026-09-14",
+      "customer": "Aster Finance",
+      "service": "Marketing",
+      "campaign": "Google Ads",
+      "amount": 19600,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-12",
+      "customer": "CloudNine",
+      "service": "SaaS",
+      "campaign": "Organic Search",
+      "amount": 51800,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-09",
+      "customer": "GreenGrid",
+      "service": "Consulting",
+      "campaign": "Referral",
+      "amount": 33750,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-07",
+      "customer": "UrbanCart",
+      "service": "Marketing",
+      "campaign": "Instagram",
+      "amount": 15700,
+      "status": "Pending"
+    },
+    {
+      "date": "2026-09-04",
+      "customer": "Medix Pro",
+      "service": "Support",
+      "campaign": "LinkedIn",
+      "amount": 9800,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-09-02",
+      "customer": "FinEdge",
+      "service": "SaaS",
+      "campaign": "Google Ads",
+      "amount": 46300,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-30",
+      "customer": "TravelMint",
+      "service": "Consulting",
+      "campaign": "Organic Search",
+      "amount": 22100,
+      "status": "Failed"
+    },
+    {
+      "date": "2026-08-27",
+      "customer": "Nova Systems",
+      "service": "SaaS",
+      "campaign": "Referral",
+      "amount": 39400,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-24",
+      "customer": "BrightFoods",
+      "service": "Marketing",
+      "campaign": "Instagram",
+      "amount": 17900,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-21",
+      "customer": "PixelForge",
+      "service": "Support",
+      "campaign": "LinkedIn",
+      "amount": 11200,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-18",
+      "customer": "Oak & Co.",
+      "service": "Consulting",
+      "campaign": "Google Ads",
+      "amount": 26300,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-15",
+      "customer": "Zenith AI",
+      "service": "SaaS",
+      "campaign": "Organic Search",
+      "amount": 58200,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-12",
+      "customer": "SwiftLogix",
+      "service": "Support",
+      "campaign": "Referral",
+      "amount": 8700,
+      "status": "Pending"
+    },
+    {
+      "date": "2026-08-09",
+      "customer": "Evergreen Hotels",
+      "service": "Marketing",
+      "campaign": "Instagram",
+      "amount": 20400,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-06",
+      "customer": "CoreWorks",
+      "service": "Consulting",
+      "campaign": "LinkedIn",
+      "amount": 31100,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-08-03",
+      "customer": "MarketHive",
+      "service": "SaaS",
+      "campaign": "Google Ads",
+      "amount": 48700,
+      "status": "Paid"
+    },
+    {
+      "date": "2026-07-30",
+      "customer": "PeakMotion",
+      "service": "Support",
+      "campaign": "Organic Search",
+      "amount": 9200,
+      "status": "Paid"
+    }
+  ],
+
+  "monthly": [
+    {
+      "month": "Apr",
+      "revenue": 182000,
+      "customers": 52
+    },
+    {
+      "month": "May",
+      "revenue": 214000,
+      "customers": 61
+    },
+    {
+      "month": "Jun",
+      "revenue": 238000,
+      "customers": 68
+    },
+    {
+      "month": "Jul",
+      "revenue": 271000,
+      "customers": 76
+    },
+    {
+      "month": "Aug",
+      "revenue": 304000,
+      "customers": 84
+    },
+    {
+      "month": "Sep",
+      "revenue": 348000,
+      "customers": 96
+    }
+  ],
+
+  "campaigns": [
+    {
+      "name": "Organic Search",
+      "value": 86
+    },
+    {
+      "name": "Referral",
+      "value": 72
+    },
+    {
+      "name": "LinkedIn",
+      "value": 61
+    },
+    {
+      "name": "Google Ads",
+      "value": 54
+    },
+    {
+      "name": "Instagram",
+      "value": 39
+    }
+  ],
+
+  "previous": {
+    "revenue": 18.4,
+    "customers": 11.2,
+    "leads": 14.8,
+    "conversion": 2.6
+  }
+}
