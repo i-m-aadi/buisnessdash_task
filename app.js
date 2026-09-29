@@ -405,11 +405,27 @@ function baseChartOptions() {
 }
 
 
+function chartThemeColors() {
+
+  const isDark =
+    document.documentElement.dataset.theme === "dark";
+
+  return {
+    text: isDark ? "#a1aabc" : "#9aa2b2",
+    grid: isDark ? "#343b49" : "#f0f1f5",
+    point: isDark ? "#202631" : "#ffffff"
+  };
+
+}
+
+
 /* =========================================
    REVENUE / CUSTOMER CHART
 ========================================= */
 
 function renderTrend() {
+
+  const themeColors = chartThemeColors();
 
   if (charts.trend) {
 
@@ -456,7 +472,7 @@ function renderTrend() {
 
               pointBorderWidth: 2,
 
-              pointBackgroundColor: "#fff"
+              pointBackgroundColor: themeColors.point
             },
 
 
@@ -478,7 +494,7 @@ function renderTrend() {
 
               pointRadius: 3,
 
-              pointBackgroundColor: "#fff",
+              pointBackgroundColor: themeColors.point,
 
               pointBorderWidth: 2,
 
@@ -499,7 +515,7 @@ function renderTrend() {
             y: {
 
               grid: {
-                color: "#f0f1f5"
+                color: themeColors.grid
               },
 
               border: {
@@ -512,7 +528,7 @@ function renderTrend() {
                   size: 9
                 },
 
-                color: "#9aa2b2",
+                color: themeColors.text,
 
                 callback: (value) =>
                   "₹" + value + "k"
@@ -540,7 +556,7 @@ function renderTrend() {
                   size: 9
                 },
 
-                color: "#9aa2b2"
+                color: themeColors.text
 
               }
 
@@ -559,7 +575,7 @@ function renderTrend() {
                   size: 9
                 },
 
-                color: "#9aa2b2"
+                color: themeColors.text
 
               }
 
@@ -745,6 +761,8 @@ function renderCategory(data) {
 
 function renderAcquisition() {
 
+  const themeColors = chartThemeColors();
+
   if (charts.acquisition) {
 
     charts.acquisition.destroy();
@@ -812,7 +830,7 @@ function renderAcquisition() {
                   size: 8
                 },
 
-                color: "#9aa2b2"
+                color: themeColors.text
 
               }
 
@@ -823,7 +841,7 @@ function renderAcquisition() {
 
               grid: {
 
-                color: "#f0f1f5"
+                color: themeColors.grid
 
               },
 
@@ -839,7 +857,7 @@ function renderAcquisition() {
                   size: 8
                 },
 
-                color: "#9aa2b2"
+                color: themeColors.text
 
               }
 
