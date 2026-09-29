@@ -1,0 +1,9 @@
+{
+  "name": "pulseboard-business-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive business metrics dashboard built with HTML, CSS, JavaScript and Chart.js.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
