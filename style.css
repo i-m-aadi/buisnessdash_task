@@ -25,6 +25,16 @@
   --radius: 18px;
 }
 
+:root[data-theme="dark"] {
+  --bg: #171b24;
+  --surface: #202631;
+  --surface-2: #272f3b;
+  --text: #edf1f7;
+  --muted: #a1aabc;
+  --border: #353e4b;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
 body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
@@ -44,6 +54,95 @@ select {
 button {
   cursor: pointer;
   border: 0;
+}
+
+:root[data-theme="dark"] .icon-btn,
+:root[data-theme="dark"] .notification,
+:root[data-theme="dark"] .date-pill,
+:root[data-theme="dark"] .filters,
+:root[data-theme="dark"] .state-card {
+  background: var(--surface);
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .icon-btn {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .eyebrow,
+:root[data-theme="dark"] .filter-group label,
+:root[data-theme="dark"] .kpi-top,
+:root[data-theme="dark"] .small-muted,
+:root[data-theme="dark"] .category-row .left,
+:root[data-theme="dark"] .mini-stats span,
+:root[data-theme="dark"] .campaign-row .name,
+:root[data-theme="dark"] th,
+:root[data-theme="dark"] td,
+:root[data-theme="dark"] footer {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .filter-group select,
+:root[data-theme="dark"] .search-box {
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .reset-btn {
+  background: #343858;
+  color: #c5c8ff;
+}
+
+:root[data-theme="dark"] .reset-btn:hover {
+  background: #41456c;
+}
+
+:root[data-theme="dark"] .revenue {
+  background: #343250;
+  color: #aaaaff;
+}
+
+:root[data-theme="dark"] .customers {
+  background: #244238;
+  color: #72d4ad;
+}
+
+:root[data-theme="dark"] .leads {
+  background: #493b2a;
+  color: #f2ba70;
+}
+
+:root[data-theme="dark"] .conversion {
+  background: #293f55;
+  color: #8ec4ff;
+}
+
+:root[data-theme="dark"] .badge,
+:root[data-theme="dark"] .status.paid {
+  background: #244238;
+  color: #72d4ad;
+}
+
+:root[data-theme="dark"] .status.pending {
+  background: #493b2a;
+  color: #f2ba70;
+}
+
+:root[data-theme="dark"] .status.failed {
+  background: #482d37;
+  color: #ff9dad;
+}
+
+:root[data-theme="dark"] .progress {
+  background: #343e4b;
+}
+
+:root[data-theme="dark"] th,
+:root[data-theme="dark"] td {
+  border-color: var(--border);
+}
+
+:root[data-theme="dark"] .state-card strong {
+  color: var(--text);
 }
 
 
