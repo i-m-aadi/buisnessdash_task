@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Interactive business metrics dashboard with KPIs, charts, filters and data table."
+  />
+
+  <title>PulseBoard — Business Analytics Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand">
+        <div class="brand-mark">P</div>
+
+        <div>
+          <strong>PulseBoard</strong>
+          <span>Business Analytics</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+
+        <a class="nav-item active" href="#overview">
+          <span>⌂</span>
+          Overview
+        </a>
+
+        <a class="nav-item" href="#performance">
+          <span>◒</span>
+          Performance
+        </a>
+
+        <a class="nav-item" href="#customers">
+          <span>◎</span>
+          Customers
+        </a>
+
+        <a class="nav-item" href="#reports">
+          <span>▤</span>
+          Reports
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="upgrade-card">
+
+          <span class="mini-label">INSIGHT</span>
+
+          <strong>
+            Revenue is trending up
+          </strong>
+
+          <p>
+            Sales are 18.4% higher than the previous period.
+          </p>
+
+        </div>
+
+        <button class="profile-btn" type="button">
+
+          <span class="avatar">
+            AP
+          </span>
+
+          <span>
+            <strong>Aditya</strong>
+            <small>Administrator</small>
+          </span>
+
+          <span class="dots">
+            •••
+          </span>
+
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+      <!-- TOP BAR -->
+
+      <header class="topbar">
+
+        <button
+          class="icon-btn mobile-menu"
+          id="menuBtn"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        <div>
+
+          <p class="eyebrow">
+            BUSINESS OVERVIEW
+          </p>
+
+          <h1>
+            Dashboard
+          </h1>
+
+        </div>
+
+        <div class="topbar-actions">
+
+          <button
+            class="icon-btn"
+            id="refreshBtn"
+            title="Refresh data"
+            aria-label="Refresh data"
+          >
+            ↻
+          </button>
+
+          <button
+            class="notification"
+            title="Notifications"
+            aria-label="Notifications"
+          >
+            ●
+          </button>
+
+          <div class="date-pill" id="todayLabel"></div>
+
+        </div>
+
+      </header>
+
+
+      <!-- ================= FILTERS ================= -->
+
+      <section
+        class="filters"
+        aria-label="Dashboard filters"
+      >
+
+        <div class="filter-group">
+
+          <label for="dateFilter">
+            Date range
+          </label>
+
+          <select id="dateFilter">
+
+            <option value="all">
+              All time
+            </option>
+
+            <option value="30">
+              Last 30 days
+            </option>
+
+            <option value="90" selected>
+              Last 90 days
+            </option>
+
+            <option value="180">
+              Last 180 days
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="filter-group">
+
+          <label for="categoryFilter">
+            Category
+          </label>
+
+          <select id="categoryFilter">
+
+            <option value="all">
+              All categories
+            </option>
+
+            <option value="SaaS">
+              SaaS
+            </option>
+
+            <option value="Consulting">
+              Consulting
+            </option>
+
+            <option value="Support">
+              Support
+            </option>
+
+            <option value="Marketing">
+              Marketing
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="filter-group search-group">
+
+          <label for="searchInput">
+            Search
+          </label>
+
+          <div class="search-box">
+
+            <span>
+              ⌕
+            </span>
+
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search customer or service..."
+            />
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="reset-btn"
+          id="resetBtn"
+        >
+          Reset filters
+        </button>
+
+      </section>
+
+
+      <!-- ================= LOADING ================= -->
+
+      <div
+        id="loading"
+        class="state-card"
+      >
+
+        <div class="spinner"></div>
+
+        <strong>
+          Loading dashboard data...
+        </strong>
+
+        <span>
+          Preparing your business metrics.
+        </span>
+
+      </div>
+
+
+      <!-- ================= ERROR ================= -->
+
+      <div
+        id="error"
+        class="state-card error-state hidden"
+      >
+
+        <strong>
+          Unable to load data
+        </strong>
+
+        <span id="errorMessage">
+          Please try again.
+        </span>
+
+        <button id="retryBtn">
+          Retry
+        </button>
+
+      </div>
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <div
+        id="dashboard"
+        class="hidden"
+      >
+
+        <!-- KPI CARDS -->
+
+        <section
+          class="kpi-grid"
+          id="overview"
+        >
+
+          <!-- REVENUE -->
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+
+              <span>
+                Total revenue
+              </span>
+
+              <span class="kpi-icon revenue">
+                ₹
+              </span>
+
+            </div>
+
+            <div
+              class="kpi-value"
+              id="revenueKpi"
+            >
+              ₹0
+            </div>
+
+            <div
+              class="kpi-change positive"
+              id="revenueChange"
+            >
+              +0%
+            </div>
+
+            <span class="kpi-note">
+              vs previous period
+            </span>
+
+          </article>
+
+
+          <!-- CUSTOMERS -->
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+
+              <span>
+                Customers
+              </span>
+
+              <span class="kpi-icon customers">
+                ◎
+              </span>
+
+            </div>
+
+            <div
+              class="kpi-value"
+              id="customersKpi"
+            >
+              0
+            </div>
+
+            <div
+              class="kpi-change positive"
+              id="customersChange"
+            >
+              +0%
+            </div>
+
+            <span class="kpi-note">
+              active customers
+            </span>
+
+          </article>
+
+
+          <!-- LEADS -->
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+
+              <span>
+                Qualified leads
+              </span>
+
+              <span class="kpi-icon leads">
+                ✦
+              </span>
+
+            </div>
+
+            <div
+              class="kpi-value"
+              id="leadsKpi"
+            >
+              0
+            </div>
+
+            <div
+              class="kpi-change positive"
+              id="leadsChange"
+            >
+              +0%
+            </div>
+
+            <span class="kpi-note">
+              conversion-ready leads
+            </span>
+
+          </article>
+
+
+          <!-- CONVERSION -->
+
+          <article class="kpi-card">
+
+            <div class="kpi-top">
+
+              <span>
+                Conversion rate
+              </span>
+
+              <span class="kpi-icon conversion">
+                ↗
+              </span>
+
+            </div>
+
+            <div
+              class="kpi-value"
+              id="conversionKpi"
+            >
+              0%
+            </div>
+
+            <div
+              class="kpi-change positive"
+              id="conversionChange"
+            >
+              +0%
+            </div>
+
+            <span class="kpi-note">
+              lead to customer
+            </span>
+
+          </article>
+
+        </section>
+
+
+        <!-- ================= CHARTS ================= -->
+
+        <section
+          class="chart-grid"
+          id="performance"
+        >
+
+          <!-- REVENUE CHART -->
+
+          <article class="panel large-panel">
+
+            <div class="panel-head">
+
+              <div>
+
+                <p class="panel-label">
+                  PERFORMANCE
+                </p>
+
+                <h2>
+                  Revenue & customers
+                </h2>
+
+              </div>
+
+              <div class="legend">
+
+                <span>
+                  <i class="legend-dot revenue-dot"></i>
+                  Revenue
+                </span>
+
+                <span>
+                  <i class="legend-dot customer-dot"></i>
+                  Customers
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="chart-wrap">
+
+              <canvas id="trendChart"></canvas>
+
+            </div>
+
+          </article>
+
+
+          <!-- CATEGORY CHART -->
+
+          <article class="panel">
+
+            <div class="panel-head">
+
+              <div>
+
+                <p class="panel-label">
+                  BREAKDOWN
+                </p>
+
+                <h2>
+                  Sales by category
+                </h2>
+
+              </div>
+
+              <span
+                class="small-muted"
+                id="categoryTotal"
+              >
+                ₹0
+              </span>
+
+            </div>
+
+            <div class="chart-wrap donut-wrap">
+
+              <canvas id="categoryChart"></canvas>
+
+            </div>
+
+            <div
+              class="category-list"
+              id="categoryList"
+            ></div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ================= LOWER GRID ================= -->
+
+        <section class="lower-grid">
+
+          <!-- CUSTOMER ACQUISITION -->
+
+          <article
+            class="panel"
+            id="customers"
+          >
+
+            <div class="panel-head">
+
+              <div>
+
+                <p class="panel-label">
+                  CUSTOMERS
+                </p>
+
+                <h2>
+                  Customer acquisition
+                </h2>
+
+              </div>
+
+              <span class="badge">
+                Live data
+              </span>
+
+            </div>
+
+
+            <div class="mini-stats">
+
+              <div>
+
+                <span>
+                  New customers
+                </span>
+
+                <strong id="newCustomers">
+                  0
+                </strong>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Retention
+                </span>
+
+                <strong id="retention">
+                  0%
+                </strong>
+
+              </div>
+
+              <div>
+
+                <span>
+                  Avg. order
+                </span>
+
+                <strong id="avgOrder">
+                  ₹0
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="chart-wrap mini-chart">
+
+              <canvas id="acquisitionChart"></canvas>
+
+            </div>
+
+          </article>
+
+
+          <!-- CAMPAIGNS -->
+
+          <article class="panel">
+
+            <div class="panel-head">
+
+              <div>
+
+                <p class="panel-label">
+                  CAMPAIGNS
+                </p>
+
+                <h2>
+                  Lead sources
+                </h2>
+
+              </div>
+
+            </div>
+
+            <div
+              class="campaign-list"
+              id="campaignList"
+            ></div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <section
+          class="panel table-panel"
+          id="reports"
+        >
+
+          <div class="panel-head">
+
+            <div>
+
+              <p class="panel-label">
+                REPORTING
+              </p>
+
+              <h2>
+                Recent business activity
+              </h2>
+
+            </div>
+
+            <span
+              class="small-muted"
+              id="rowCount"
+            >
+              0 records
+            </span>
+
+          </div>
+
+
+          <div class="table-scroll">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Date
+                  </th>
+
+                  <th>
+                    Customer
+                  </th>
+
+                  <th>
+                    Service
+                  </th>
+
+                  <th>
+                    Campaign
+                  </th>
+
+                  <th>
+                    Status
+                  </th>
+
+                  <th class="align-right">
+                    Amount
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody id="activityBody"></tbody>
+
+            </table>
+
+          </div>
+
+
+          <div
+            class="empty-state hidden"
+            id="emptyState"
+          >
+            No records match the selected filters.
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <footer>
+        PulseBoard • Synthetic business data • Built with HTML, CSS, JavaScript & Chart.js
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <!-- Chart.js -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
+  ></script>
+
+  <!-- Application JS -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
